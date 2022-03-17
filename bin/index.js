@@ -7,13 +7,18 @@
 const inquirer = require("inquirer");
 const { program } = require("commander");
 
+program.version(require("../package.json").version);
+
 program
-  .version(require("../package.json").version)
-  .command("create <name>")
-  .description("create a new project")
-  .action(name => {
-    // 打印命令行输入的值
-    console.log("project name is " + name);
+  .command("new [projectName]")
+  .alias("n")
+  .description("创建项目")
+  .action(projectName => {
+    createProject(projectName);
   });
+
+const createProject = name => {
+  console.log("init ", name);
+};
 
 program.parse();
